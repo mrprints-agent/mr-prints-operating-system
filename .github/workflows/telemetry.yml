@@ -1,0 +1,73 @@
+name: telemetry
+
+# Daily read of this repository's traffic, kept on the `telemetry` branch because
+# GitHub only keeps 14 days of traffic data. Mr Prints reads the result from
+# raw.githubusercontent.com/<repo>/telemetry/telemetry/traffic.json.
+
+on:
+  schedule:
+    - cron: "17 9 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  read:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: telemetry
+      - name: Read traffic and listing status
+        env:
+          TRAFFIC_TOKEN: ${{ secrets.TRAFFIC_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          python3 - <<'PY'
+          import json, os, urllib.request, datetime
+          repo = os.environ["REPO"]; tok = os.environ["TRAFFIC_TOKEN"]; owner = repo.split("/")[0]
+          def get(path):
+              r = urllib.request.Request("https://api.github.com" + path, headers={
+                  "Authorization": "Bearer " + tok, "Accept": "application/vnd.github+json",
+                  "User-Agent": "mrprints-telemetry"})
+              with urllib.request.urlopen(r, timeout=30) as x:
+                  return json.loads(x.read())
+          p = "telemetry/traffic.json"
+          os.makedirs("telemetry", exist_ok=True)
+          d = json.load(open(p)) if os.path.exists(p) else {"views": {}, "clones": {}, "referrers": {}, "paths": {}, "listings": {}}
+          now = datetime.datetime.utcnow().replace(microsecond=0).isoformat() + "Z"
+          today = now[:10]
+          for kind in ("views", "clones"):
+              for row in get(f"/repos/{repo}/traffic/{kind}").get(kind, []):
+                  day = row["timestamp"][:10]
+                  old = d[kind].get(day, {"count": 0, "uniques": 0})
+                  d[kind][day] = {"count": max(old["count"], row["count"]), "uniques": max(old["uniques"], row["uniques"])}
+          d["referrers"][today] = get(f"/repos/{repo}/traffic/popular/referrers")
+          d["paths"][today] = [{"path": x["path"], "count": x["count"], "uniques": x["uniques"]} for x in get(f"/repos/{repo}/traffic/popular/paths")]
+          r = get(f"/repos/{repo}")
+          issues = [i for i in get(f"/repos/{repo}/issues?state=all&per_page=100") if i["user"]["login"] != owner]
+          d["repo"] = {"stars": r["stargazers_count"], "forks": r["forks_count"], "watchers": r["subscribers_count"],
+                       "issues_by_others": len(issues), "issue_urls": [i["html_url"] for i in issues]}
+          for key, path in {"scottcjn": "/repos/Scottcjn/awesome-agents/pulls/89"}.items():
+              try:
+                  pr = get(path)
+                  d["listings"][key] = {"url": pr["html_url"], "state": pr["state"], "merged": bool(pr.get("merged_at")),
+                                        "comments": pr.get("comments", 0) + pr.get("review_comments", 0)}
+              except Exception as e:
+                  d["listings"][key] = {"error": str(e)[:200]}
+          d["totals"] = {"views": sum(v["count"] for v in d["views"].values()),
+                         "clones": sum(v["count"] for v in d["clones"].values()),
+                         "view_uniques_daily_sum": sum(v["uniques"] for v in d["views"].values()),
+                         "clone_uniques_daily_sum": sum(v["uniques"] for v in d["clones"].values())}
+          d["last_read"] = now
+          json.dump(d, open(p, "w"), indent=1, sort_keys=True)
+          print(json.dumps(d["totals"]), json.dumps(d["repo"]), json.dumps(d["listings"]))
+          PY
+      - name: Commit
+        run: |
+          git config user.name "mrprints-agent"
+          git config user.email "333599211+mrprints-agent@users.noreply.github.com"
+          git add telemetry/traffic.json
+          git diff --cached --quiet || git commit -m "telemetry $(date -u +%F)"
+          git push origin HEAD:telemetry
