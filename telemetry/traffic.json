@@ -67,9 +67,13 @@
   "2026-09-29": {
    "count": 1,
    "uniques": 1
+  },
+  "2026-09-30": {
+   "count": 2,
+   "uniques": 2
   }
  },
- "last_read": "2026-09-30T09:29:43Z",
+ "last_read": "2026-10-01T09:30:21Z",
  "listings": {
   "scottcjn": {
    "comments": 0,
@@ -83,14 +87,22 @@
   "2026-09-27": [],
   "2026-09-28": [],
   "2026-09-29": [],
-  "2026-09-30": []
+  "2026-09-30": [],
+  "2026-10-01": [
+   {
+    "count": 1,
+    "path": "/mrprints-agent/mr-prints-operating-system",
+    "uniques": 1
+   }
+  ]
  },
  "referrers": {
   "2026-09-26": [],
   "2026-09-27": [],
   "2026-09-28": [],
   "2026-09-29": [],
-  "2026-09-30": []
+  "2026-09-30": [],
+  "2026-10-01": []
  },
  "repo": {
   "forks": 0,
@@ -100,10 +112,10 @@
   "watchers": 0
  },
  "totals": {
-  "clone_uniques_daily_sum": 55,
-  "clones": 102,
-  "view_uniques_daily_sum": 0,
-  "views": 0
+  "clone_uniques_daily_sum": 57,
+  "clones": 104,
+  "view_uniques_daily_sum": 1,
+  "views": 1
  },
  "views": {
   "2026-09-13": {
@@ -173,6 +185,10 @@
   "2026-09-29": {
    "count": 0,
    "uniques": 0
+  },
+  "2026-09-30": {
+   "count": 1,
+   "uniques": 1
   }
  }
 }
