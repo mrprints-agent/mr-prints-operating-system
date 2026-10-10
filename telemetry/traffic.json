@@ -103,15 +103,16 @@
   "2026-10-08": {
    "count": 1,
    "uniques": 1
+  },
+  "2026-10-09": {
+   "count": 1,
+   "uniques": 1
   }
  },
- "last_read": "2026-10-09T09:31:25Z",
+ "last_read": "2026-10-10T09:28:06Z",
  "listings": {
   "scottcjn": {
-   "comments": 0,
-   "merged": false,
-   "state": "open",
-   "url": "https://github.com/Scottcjn/awesome-agents/pull/89"
+   "error": "HTTP Error 404: Not Found"
   }
  },
  "paths": {
@@ -182,6 +183,13 @@
     "path": "/mrprints-agent/mr-prints-operating-system",
     "uniques": 2
    }
+  ],
+  "2026-10-10": [
+   {
+    "count": 2,
+    "path": "/mrprints-agent/mr-prints-operating-system",
+    "uniques": 2
+   }
   ]
  },
  "referrers": {
@@ -198,7 +206,8 @@
   "2026-10-06": [],
   "2026-10-07": [],
   "2026-10-08": [],
-  "2026-10-09": []
+  "2026-10-09": [],
+  "2026-10-10": []
  },
  "repo": {
   "forks": 0,
@@ -208,8 +217,8 @@
   "watchers": 0
  },
  "totals": {
-  "clone_uniques_daily_sum": 88,
-  "clones": 151,
+  "clone_uniques_daily_sum": 89,
+  "clones": 152,
   "view_uniques_daily_sum": 2,
   "views": 2
  },
@@ -315,6 +324,10 @@
    "uniques": 1
   },
   "2026-10-08": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-09": {
    "count": 0,
    "uniques": 0
   }
