@@ -143,9 +143,13 @@
   "2026-10-18": {
    "count": 18,
    "uniques": 9
+  },
+  "2026-10-19": {
+   "count": 9,
+   "uniques": 5
   }
  },
- "last_read": "2026-10-19T09:46:34Z",
+ "last_read": "2026-10-20T09:41:29Z",
  "listings": {
   "scottcjn": {
    "error": "HTTP Error 404: Not Found"
@@ -289,6 +293,13 @@
     "path": "/mrprints-agent/mr-prints-operating-system",
     "uniques": 1
    }
+  ],
+  "2026-10-20": [
+   {
+    "count": 1,
+    "path": "/mrprints-agent/mr-prints-operating-system",
+    "uniques": 1
+   }
   ]
  },
  "referrers": {
@@ -315,7 +326,8 @@
   "2026-10-16": [],
   "2026-10-17": [],
   "2026-10-18": [],
-  "2026-10-19": []
+  "2026-10-19": [],
+  "2026-10-20": []
  },
  "repo": {
   "forks": 0,
@@ -325,8 +337,8 @@
   "watchers": 0
  },
  "totals": {
-  "clone_uniques_daily_sum": 129,
-  "clones": 215,
+  "clone_uniques_daily_sum": 134,
+  "clones": 224,
   "view_uniques_daily_sum": 2,
   "views": 2
  },
@@ -472,6 +484,10 @@
    "uniques": 0
   },
   "2026-10-18": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-19": {
    "count": 0,
    "uniques": 0
   }
