@@ -211,9 +211,13 @@
   "2026-11-04": {
    "count": 1,
    "uniques": 1
+  },
+  "2026-11-05": {
+   "count": 12,
+   "uniques": 6
   }
  },
- "last_read": "2026-11-05T17:23:11Z",
+ "last_read": "2026-11-06T16:45:07Z",
  "listings": {
   "scottcjn": {
    "comments": 0,
@@ -389,7 +393,8 @@
   "2026-11-02": [],
   "2026-11-03": [],
   "2026-11-04": [],
-  "2026-11-05": []
+  "2026-11-05": [],
+  "2026-11-06": []
  },
  "referrers": {
   "2026-09-26": [],
@@ -432,18 +437,21 @@
   "2026-11-02": [],
   "2026-11-03": [],
   "2026-11-04": [],
-  "2026-11-05": []
+  "2026-11-05": [],
+  "2026-11-06": []
  },
  "repo": {
   "forks": 0,
-  "issue_urls": [],
-  "issues_by_others": 0,
+  "issue_urls": [
+   "https://github.com/mrprints-agent/mr-prints-operating-system/issues/1"
+  ],
+  "issues_by_others": 1,
   "stars": 0,
   "watchers": 0
  },
  "totals": {
-  "clone_uniques_daily_sum": 200,
-  "clones": 324,
+  "clone_uniques_daily_sum": 206,
+  "clones": 336,
   "view_uniques_daily_sum": 2,
   "views": 2
  },
@@ -657,6 +665,10 @@
    "uniques": 0
   },
   "2026-11-04": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-05": {
    "count": 0,
    "uniques": 0
   }
